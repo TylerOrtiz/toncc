@@ -12,7 +12,7 @@ import Gallery, { GalleryItems } from '@/components/gallery';
 
 const cld = new Cloudinary({
     cloud: {
-        cloudName: 'dgdeiwkab'
+        cloudName: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
     }
 });
 
