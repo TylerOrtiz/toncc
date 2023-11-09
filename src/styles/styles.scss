@@ -1,0 +1,60 @@
+@import "./ton-variables.scss";
+@import "../node_modules/bootstrap/scss/functions.scss";
+@import "../node_modules/bootstrap/scss/variables.scss";
+@import "../node_modules/bootstrap/scss/mixins/breakpoints.scss";
+@import "~react-image-gallery/styles/scss/image-gallery.scss";
+/* You can add global styles to this file, and also import other style files */
+body {
+    background: url('/page_bg.jpg') repeat fixed;
+    overflow-y: scroll;
+}
+
+.page-content {
+    padding: 2rem 1rem;
+    background-color: $ton-brand-light;
+    margin-bottom: 1rem;
+    border-radius: 0.3rem;
+    min-height: 100%;
+}
+
+.navbar {
+    background-image: url('/header_bg.jpg');
+    background-repeat: repeat;
+    border-radius: calc(0.25rem - 1px);
+}
+
+a {
+    color: rgb(4, 87, 205);
+}
+
+.navbar a[href] {
+    font-size: 1.5rem;
+    color: rgb(221,180,120);
+}
+
+.navbar-nav .nav-link.active {
+    color: rgb(254, 234, 205);
+}
+
+.navbar-toggler {
+    color: rgb(254, 234, 205);
+}
+
+[aria-expanded="false"].navbar-toggler .fa-times-circle  {
+    display: none;
+}
+
+[aria-expanded="true"].navbar-toggler .fa-bars  {
+    display: none;
+}
+
+.footer {
+    color: rgb(221,180,120);
+    background-image: url('/header_bg.jpg');
+    border-radius: calc(0.25rem - 1px);
+}
+
+.footer a[href] {
+    color: rgb(221,180,120);
+    text-decoration: none;
+}
