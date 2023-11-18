@@ -15,13 +15,9 @@ function parsePayload(payload: any) {
 
 async function sendEmail(data) {
     const msg = {
-        to: 'noreply@toncustomcarpentry.com', // Change to your recipient
-        from: { email: 'noreply@toncustomcarpentry.com', name: 'TON Website <no-reply>'},
+        to: { email: 'noreply@toncustomcarpentry.com', name: 'TON Website'},
+        from: { email: data.email, name: data.name},
         subject: 'TON CC Lead',
-        content: [{
-            type: 'text/html',
-            value: 'temp'
-        }],
         dynamic_template_data: {
             name: data.name,
             phone: data.phone,
@@ -34,7 +30,6 @@ async function sendEmail(data) {
     try {
         mailer.setApiKey(process.env.SENDGRID_API_KEY)
         const response = await mailer.send(msg)
-        console.log('sent', response)
     } catch(ex) {
         console.log('ex', ex)
         console.log('ex', ex?.response?.body?.errors.map(f=>f.message).join(''))
@@ -51,7 +46,7 @@ export async function POST(request: NextRequest) {
     const payload = parsePayload(rawPayload)
 
     revalidatePath('/contact/submit')
-    
+
     if ( payload.honeypot !== '' ) {
         return Response.json({message: "invalid request"}, { status: 400, headers: { 'Set-Cookie': '_blockAllMessage=true'} })
     }
