@@ -51,19 +51,38 @@ const all_cloudinary_images = async (): Promise<list<resource>> => {
 
 const all_cloudinary_images_cached = cache(all_cloudinary_images)
 
-const get_tagged_media = async (tags: string | string[]) => {
+const query_get_tagged_media = async (tags: string | string[]) => {
     const images = await all_cloudinary_images_cached()
     const tagsSearch = Array.isArray(tags) ? tags : [tags]
     const matching = images.results.filter(a => a.tags.some(r => tagsSearch.includes(r)))
     return matching
 }
 
+const query_get_media_by_ids = async (ids: string[]) => {
+    const images = await all_cloudinary_images_cached()
+    const matching = images.results.filter(a => ids.indexOf(a.public_id) >= 0)
+    return matching
+}
+
 export const get_media_with_tags = async(tags: string | string[]) => {
-    const media = await get_tagged_media(tags);
+    const media = await query_get_tagged_media(tags);
     const mediaData = media.map( f => {
         return {
+            public_id: f.public_id,
+            alt: f.context?.custom?.alt,
             ...wrap_media(f.public_id),
-            alt: f.context?.custom?.alt
+        } 
+    })
+    return Response.json(mediaData)
+}
+
+export const get_media_by_ids = async(ids: string[]) => {
+    const media = await query_get_media_by_ids(ids);
+    const mediaData = media.map( f => {
+        return {
+            public_id: f.public_id,
+            alt: f.context?.custom?.alt,
+            ...wrap_media(f.public_id),
         } 
     })
     return Response.json(mediaData)

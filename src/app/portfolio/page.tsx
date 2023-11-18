@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     description: `See some of the highlighted work John has done 
     and learn more about what types of work he specializes in.`,
 }
-
+import { get_media_by_ids } from '../../api/cloudinary'
 import Gallery, { GalleryItems } from '@/components/gallery';
 
 const cld = new Cloudinary({
@@ -16,28 +16,43 @@ const cld = new Cloudinary({
     }
 });
 
-export default async function Portfolio() {
-    const hydratedPortfolios = PortfolioContent.map((folio) => {
-        const images: GalleryItems[] = []
-        folio?.media?.forEach(media => {
-            const urltemp = cld.image(media.url).toURL()
-            // TODO: Add in actions and transforms etc.
-            const small = urltemp//this.cloudinary.url(media.url, { crop: 'scale', width: 150, quality: 'auto:low' });
-            const medium = urltemp//this.cloudinary.url(media.url, { crop: 'scale', width: width, quality: 'auto:eco' });
-            const large = urltemp//this.cloudinary.url(media.url, { crop: 'scale', quality: 'auto:best' });
-            images.push({
-                thumbnail: small,
-                original: large,
-                originalAlt: media.alt,
-                thumbnailAlt: media.alt
-            });
-        })
-
+async function getData() {
+    const ids = PortfolioContent.reduce( (ac, f) => {
+        const currentIds = f.media.map(g=>g.public_id)
+        ac.push(...currentIds)
+        return ac
+    } , [])
+    const res = await get_media_by_ids(ids)
+  
+    if (!res.ok) {
+      // This will activate the closest `error.js` Error Boundary
+      throw new Error('Failed to fetch data')
+    }
+  
+    const payload = await res.json()
+    const hydratedPortfolio = PortfolioContent.map((folio) => {
+        const images: GalleryItems[] = folio?.media?.map((media) => {
+            const mediaPayload = payload.find((f)=>f.public_id === media.public_id)
+            
+            return {
+                thumbnail: mediaPayload.thumbnail,
+                original: mediaPayload.display,
+                originalAlt: mediaPayload.alt,
+                thumbnailAlt: mediaPayload.alt
+            }
+        }) ?? []
+        
         return {
             ...folio,
             galleryImages: images,
         }
     })
+
+    return hydratedPortfolio
+  }
+
+export default async function Portfolio() {
+    const hydratedPortfolios = await getData()
 
     return (
         <div className="page-content">
