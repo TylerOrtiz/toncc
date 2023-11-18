@@ -13,11 +13,12 @@ function parsePayload(payload: any) {
     return form
 }
 
-async function sendEmail(data) {
-    const msg = {
+async function sendEmail(data: any) {
+    const msg: any = {
         to: { email: 'noreply@toncustomcarpentry.com', name: 'TON Website'},
         from: { email: data.email, name: data.name},
         subject: 'TON CC Lead',
+        content: ' ',
         dynamic_template_data: {
             name: data.name,
             phone: data.phone,
@@ -28,11 +29,11 @@ async function sendEmail(data) {
       }
 
     try {
-        mailer.setApiKey(process.env.SENDGRID_API_KEY)
-        const response = await mailer.send(msg)
-    } catch(ex) {
+        mailer.setApiKey(process.env.SENDGRID_API_KEY ?? '')
+        await mailer.send(msg)
+    } catch(ex: any) {
         console.log('ex', ex)
-        console.log('ex', ex?.response?.body?.errors.map(f=>f.message).join(''))
+        console.log('ex', ex?.response?.body?.errors.map((f:any)=>f.message).join(''))
         return false
     }
     

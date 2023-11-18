@@ -160,8 +160,7 @@ with an enlarged island with a farmhouse sink with custom granite.</p> `,
                         'cabinets'
                     ]
                 }
-            ],
-            galleryImages: []
+            ]
         },
         {
             id: 'dlw-custom-cabinets',

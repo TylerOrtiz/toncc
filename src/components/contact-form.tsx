@@ -23,7 +23,7 @@ export default function ContactForm({
     const [formComplete, setFormComplete] = useState<boolean>(blockNext)
     const [formState, setFormState] = useState<ContactForm>(initialState)
 
-    const submitForm = async (data) => {
+    const submitForm = async (data: any) => {
         try {
             const response = await fetch('/contact/submit', {
                 method: 'POST', headers: { 'X-CSRF-Token': token }, cache: 'no-cache', body: JSON.stringify({
@@ -37,7 +37,7 @@ export default function ContactForm({
         }
     }
 
-    function formAction(formData) {
+    function formAction(formData: any) {
         const data = {
             name: formData.get('name'),
             phone: formData.get('phone'),

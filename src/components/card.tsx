@@ -14,7 +14,7 @@ const Card = ({
     return (
         <>
             <div className="card">
-                {hasCardImage && (<img className="card-img-top" src={cardImage} alt={cardImage.alt} />)}
+                {hasCardImage && (<img className="card-img-top" src={cardImage} />)}
                 {hasCardTitle && (<h5 className="card-header">{cardTitle}</h5>)}
 
                 <div className="card-body">

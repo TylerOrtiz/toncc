@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { Cloudinary } from "@cloudinary/url-gen";
 import PortfolioContent from '@/data/portfolios';
 import { Portfolio } from '@/models/portfolio';
 export const metadata: Metadata = {
@@ -10,16 +9,13 @@ export const metadata: Metadata = {
 import { get_media_by_ids } from '../../api/cloudinary'
 import Gallery, { GalleryItems } from '@/components/gallery';
 
-const cld = new Cloudinary({
-    cloud: {
-        cloudName: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
-    }
-});
-
 async function getData() {
-    const ids = PortfolioContent.reduce( (ac, f) => {
-        const currentIds = f.media.map(g=>g.public_id)
-        ac.push(...currentIds)
+    const ids = PortfolioContent.reduce( (ac: string[], f) => {
+        const currentIds = f.media?.map(g=>g.public_id)
+        if (currentIds) {
+            ac.push(...currentIds)
+        }
+        
         return ac
     } , [])
     const res = await get_media_by_ids(ids)
@@ -32,7 +28,7 @@ async function getData() {
     const payload = await res.json()
     const hydratedPortfolio = PortfolioContent.map((folio) => {
         const images: GalleryItems[] = folio?.media?.map((media) => {
-            const mediaPayload = payload.find((f)=>f.public_id === media.public_id)
+            const mediaPayload = payload.find((f: any)=>f.public_id === media.public_id)
             
             return {
                 thumbnail: mediaPayload.thumbnail,
