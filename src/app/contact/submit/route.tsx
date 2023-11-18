@@ -18,7 +18,6 @@ async function sendEmail(data: any) {
         to: { email: 'noreply@toncustomcarpentry.com', name: 'TON Website'},
         from: { email: data.email, name: data.name},
         subject: 'TON CC Lead',
-        content: ' ',
         dynamic_template_data: {
             name: data.name,
             phone: data.phone,
