@@ -1,42 +1,23 @@
 import mailer from '@sendgrid/mail'
-async function recaptchaValidate(token: string, ipaddress?: string): Promise<boolean> {
-    const payload = {
-        secret: process.env.RECAPTCHA_KEY_SERVER,
-        response: token,
-        remoteip: ipaddress
-    }
-    const finalPayload = Object.keys(payload)
-        .map((key: string) => {
-            const value = payload[key]
-            return `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
-        })
-        .join('&')
-    const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
-        method: 'POST', 
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'}, 
-        body: finalPayload
-    })
-    const json = await response.json()
-
-    return json.success
-}
+import { revalidatePath } from 'next/cache'
+import { NextRequest } from 'next/server'
 
 function parsePayload(payload: any) {
-    const recaptchaToken = payload.token
     const form = {
         name: payload.data.name,
         phone: payload.data.phone,
         email: payload.data.email,
         message: payload.data.message,
+        honeypot: payload.data.job
     }
-    return {recaptchaToken, form}
+    return form
 }
 
 async function sendEmail(data) {
     const msg = {
         to: 'noreply@toncustomcarpentry.com', // Change to your recipient
-        from: { email: 'noreply@toncustomcarpentry.com', name: 'TONCC Lead'},
-        subject: 'New Message for TON',
+        from: { email: 'noreply@toncustomcarpentry.com', name: 'TON Website <no-reply>'},
+        subject: 'TON CC Lead',
         content: [{
             type: 'text/html',
             value: 'temp'
@@ -63,17 +44,19 @@ async function sendEmail(data) {
 
 }
 
-export async function POST(request: Request) {
+export const dynamic = 'force-dynamic'
+
+export async function POST(request: NextRequest) {
     const rawPayload = await request.json()
-    const requestIpAddress = request.headers.get('x-forwarded-for') ?? undefined
     const payload = parsePayload(rawPayload)
 
-    const recaptcha = await recaptchaValidate(payload.recaptchaToken, requestIpAddress)
-    if ( recaptcha === false ) {
-        return new Response(JSON.stringify({"message": "recaptcha error"}), { status: 400, headers: {'Content-Type': 'application/json'}})
+    revalidatePath('/contact/submit')
+    
+    if ( payload.honeypot !== '' ) {
+        return Response.json({message: "invalid request"}, { status: 400, headers: { 'Set-Cookie': '_blockAllMessage=true'} })
     }
 
-    await sendEmail(payload.form)
+    await sendEmail(payload)
 
-    return new Response(JSON.stringify({"message": "ok"}), {status: 200, headers: {'Content-Type': 'application/json'}})
+    return Response.json({"message": "ok"}, {status: 200, headers: { 'Set-Cookie': '_blockNextMessage=true'}})
 }

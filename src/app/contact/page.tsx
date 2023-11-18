@@ -8,10 +8,16 @@ export const metadata: Metadata = {
     description: `Do you have a space that off the shelf products wont fit?
     No problem! Contact John today for a free consultation.`,
 }
-import Script from 'next/script';
+import { cookies, headers } from 'next/headers'
+export const dynamic = 'force-dynamic'
 
 export default async function Contact() {
-    const recaptchaSource = `https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_KEY_CLIENT}`
+    const blockSend = cookies().get('_blockNextMessage')?.value
+    const blockAll = cookies().get('_blockAllMessage')?.value
+    const csrfToken = headers().get('X-CSRF-Token') || 'missing';
+    const blockNewSend = blockSend && blockSend.length > 0  || false
+    const blockAllSend = blockAll && blockAll.length > 0 || false
+
     return (
         <div className="page-content">
             <h1 className="font-weight-light">Get in touch with us</h1>
@@ -67,12 +73,11 @@ export default async function Contact() {
                     <div className="card">
                         <h5 className="card-header">Leave a message</h5>
                         <div className="card-body">
-                            <ContactForm></ContactForm>
+                            <ContactForm token={csrfToken} blockNext={blockNewSend} blockAll={blockAllSend}></ContactForm>
                         </div>
                     </div>
                 </div>
             </div>
-            <Script src={recaptchaSource} strategy={'beforeInteractive'} />
         </div>
     )
 }

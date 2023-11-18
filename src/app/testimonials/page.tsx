@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import Card from '@/components/card';
 import TestimonialsContent from '@/data/testimonials';
 export const metadata: Metadata = {
     title: 'TON Custom Carpentry | Testimonials',
@@ -9,19 +8,26 @@ export const metadata: Metadata = {
 
 export default async function Testimonials() {
     const testimonials = TestimonialsContent
+    const tesimonialClassBase = 'blockquote testimonial-quote'
+    const testimonialClassLeft = `${tesimonialClassBase} testimonial-quote-left`
+    const testimonialClassRight = `${tesimonialClassBase} testimonial-quote-right`
 
     return (
         <div className="page-content">
             <h1 className="font-weight-light">Testimonials</h1>
             <h2 className="font-weight-light">Hear some feedback from some of our clients!</h2>
 
-            <div className="row">
-                {testimonials.map((item) => (
-                    <div className="col-sm-6 col-lg-4 mx-auto my-2" key={item.name}>
-                        <Card cardTitle={item.name} cardContent={item.content}></Card>
+            {testimonials.map((item, idx) => {
+                const ourclass = idx % 2 === 0 ? testimonialClassLeft : testimonialClassRight
+                return (
+                    <div className="row" key={item.name}>
+                        <blockquote className={ourclass} >
+                            <div dangerouslySetInnerHTML={{ __html: item.content }} />
+                            <footer className="blockquote-footer">{item.name}</footer>
+                        </blockquote>
                     </div>
-                ))}
-            </div>
+                )
+            })}
         </div>
     )
 }

@@ -58,3 +58,22 @@ a {
     color: rgb(221,180,120);
     text-decoration: none;
 }
+
+.testimonial-quote {
+    font-size: 0.95rem;
+    background: lighten($color: $ton-brand-light, $amount: 7%);
+    padding: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    &.testimonial-quote-right {
+        margin-left: 30%;
+        margin-right: 5%;
+        text-align: right;
+    }
+    &.testimonial-quote-left {
+        margin-right: 30%;
+        margin-left: 5%;
+        text-align: left;
+    }
+}
