@@ -46,7 +46,7 @@ export default function About() {
                     <p>Starting in the late 1970s, working for a design and build firm in the Hudson Valley, owner John Ortiz got
                         his start working on projects ranging from new custom homes and additions to brownstones and loft conversions
                         in
-                        NYC. Soon after, he progressed to running his own crews and began work on both residential and commerical
+                        NYC. Soon after, he progressed to running his own crews and began work on both residential and commercial
                         projects through the mid 1990s.</p>
 
                     <p>In the mid 1990s, John relocated to Colorado and worked on residential and commercial projects throughout
