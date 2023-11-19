@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { GoogleTagManager } from '@next/third-parties/google'
+import { Analytics } from '@vercel/analytics/react';
 import PrimaryNavigation from '@/components/primary-navigation'
 import PrimaryFooter from '@/components/primary-footer'
 import '@/styles/ton-bootstrap.scss'
@@ -32,6 +33,7 @@ export default function RootLayout({
           <PrimaryFooter></PrimaryFooter>
         </div>
         <GoogleTagManager gtmId="GTM-NPBGWBZ" />
+        <Analytics />
       </body>
     </html>
   )
