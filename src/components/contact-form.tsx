@@ -76,21 +76,21 @@ export default function ContactForm({
             <form action={formAction}>
                 <div className="form-group">
                     <div className="form-floating mb-3">
-                        <input id="name" type="text" className="form-control" name="name" placeholder="Name" required minLength={3} />
+                        <input id="name" type="text" autoComplete="name" className="form-control" name="name" placeholder="Name" required minLength={3} />
                         <label className="form-label" htmlFor="name">Name</label>
                     </div>
                 </div>
 
                 <div className="form-group">
                     <div className="form-floating mb-3">
-                        <input ref={inputRef} id="phone" name="phone" className="form-control" placeholder="" required value={inputValue} onChange={handlePhoneValueChange} />
+                        <input ref={inputRef} id="phone" type="tel" autoComplete="tel" name="phone" className="form-control" placeholder="" required value={inputValue} onChange={handlePhoneValueChange} />
                         <label className="form-label" htmlFor="phone">Phone Number</label>
                     </div>
                 </div>
 
                 <div className="form-group">
                     <div className="form-floating mb-3">
-                        <input id="email" type="email" className="form-control" name="email" placeholder="" required minLength={3} />
+                        <input id="email" type="email" autoComplete="email" className="form-control" name="email" placeholder="" required minLength={3} />
                         <label className="form-label" htmlFor="email">Email Address</label>
                     </div>
                 </div>
