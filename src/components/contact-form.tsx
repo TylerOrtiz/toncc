@@ -1,13 +1,8 @@
 'use client'
 import React, { useState } from "react"
 import { ContactForm } from "@/models/contact-form"
+import { usePhoneInput } from 'react-international-phone';
 
-const initialState: ContactForm = {
-    name: '',
-    phone: '',
-    email: '',
-    message: '',
-}
 
 type FormProps = {
     token: string
@@ -20,32 +15,38 @@ export default function ContactForm({
     blockNext,
     blockAll,
 }: FormProps) {
+    const {
+        inputValue,
+        handlePhoneValueChange,
+        inputRef,
+    } = usePhoneInput({
+        defaultCountry: 'us',
+        disableCountryGuess: true,
+        disableDialCodeAndPrefix: true,
+        value: '',
+    });
+
     const [formComplete, setFormComplete] = useState<boolean>(blockNext)
-    const [formState, setFormState] = useState<ContactForm>(initialState)
 
     const submitForm = async (data: any) => {
-        try {
-            const response = await fetch('/contact/submit', {
-                method: 'POST', headers: { 'X-CSRF-Token': token }, cache: 'no-cache', body: JSON.stringify({
-                    data: data,
-                })
+        const response = await fetch('/contact/submit', {
+            method: 'POST', headers: { 'X-CSRF-Token': token }, cache: 'no-cache', body: JSON.stringify({
+                data: data,
             })
-            const content = await response.json()
-            setFormComplete(true)
-        } catch {
-            console.log('Problem occurred, todo show it')
-        }
+        })
+        await response.json()
+        setFormComplete(true)
     }
 
     function formAction(formData: any) {
-        const data = {
+        const data: ContactForm = {
             name: formData.get('name'),
-            phone: formData.get('phone'),
             email: formData.get('email'),
             message: formData.get('message'),
-            job: formData.get('job')
+            job: formData.get('job'),
+            phone: inputValue,
         }
-        setFormState(data);
+
         submitForm(data);
     }
 
@@ -72,22 +73,19 @@ export default function ContactForm({
 
     return (
         <>
-            <form action={(e) => formAction(e)}>
+            <form action={formAction}>
                 <div className="form-group">
                     <div className="form-floating mb-3">
                         <input id="name" type="text" className="form-control" name="name" placeholder="Name" required minLength={3} />
                         <label className="form-label" htmlFor="name">Name</label>
                     </div>
-                    {/* <div [hidden]="!(contactForm.controls['name'].invalid && contactForm.controls['name'].touched)" className="alert alert-danger">Name is required</div> */}
                 </div>
 
                 <div className="form-group">
                     <div className="form-floating mb-3">
-                        <input id="phone" type="tel" className="form-control" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="" required aria-describedby="phone-help" />
+                        <input ref={inputRef} id="phone" name="phone" className="form-control" placeholder="" required value={inputValue} onChange={handlePhoneValueChange} />
                         <label className="form-label" htmlFor="phone">Phone Number</label>
-                        <div id="phone-help" className="form-text">Format: 123-456-7890</div>
                     </div>
-                    {/* <div [hidden]="!(contactForm.controls['phone'].invalid && contactForm.controls['phone'].touched)" className="alert alert-danger">Phone number is required, format: 123-456-7890</div> */}
                 </div>
 
                 <div className="form-group">
@@ -95,16 +93,14 @@ export default function ContactForm({
                         <input id="email" type="email" className="form-control" name="email" placeholder="" required minLength={3} />
                         <label className="form-label" htmlFor="email">Email Address</label>
                     </div>
-                    {/* <div [hidden]="!(contactForm.controls['emailAddress'].invalid && contactForm.controls['emailAddress'].touched)" className="alert alert-danger">Email is required</div> */}
                 </div>
 
                 <div className="form-group">
                     <div className="form-floating mb-3">
-                        <textarea id="message" className="form-control" name="message" placeholder="" required minLength={10} aria-describedby="message-help"></textarea>
+                        <textarea id="message" className="form-control" name="message" placeholder="" required minLength={10} maxLength={1000} aria-describedby="message-help" style={{ minHeight: 200 }}></textarea>
                         <label className="form-label" htmlFor="message">Message</label>
                         <div id="message-help" className="form-text">Let us know what you need.</div>
                     </div>
-                    {/* <div [hidden]="!(contactForm.controls['message'].invalid && contactForm.controls['message'].touched)" className="alert alert-danger">Message is required</div> */}
                 </div>
                 <div aria-hidden={true} className="invisible">
                     <input type="hidden" name="job" value={''} />

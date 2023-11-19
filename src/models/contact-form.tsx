@@ -3,4 +3,5 @@ export type ContactForm = {
     phone: string
     email: string
     message: string
+    job: string
 }
