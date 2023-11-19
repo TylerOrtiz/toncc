@@ -17,10 +17,12 @@ export default async function Home() {
   const featuredImages = await getData()
   const featuredImagesGallery = featuredImages.map((f: any) => {
     return {
+      loading: 'lazy',
       thumbnail: f.thumbnail,
       original: f.display,
       originalAlt: f.alt,
-      thumbnailAlt: f.alt
+      thumbnailAlt: f.alt,
+      fullscreen: f.enlarged,
     }
   })
 

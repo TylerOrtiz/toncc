@@ -31,10 +31,12 @@ async function getData() {
             const mediaPayload = payload.find((f: any)=>f.public_id === media.public_id)
             
             return {
+                loading: 'lazy',
                 thumbnail: mediaPayload.thumbnail,
                 original: mediaPayload.display,
                 originalAlt: mediaPayload.alt,
-                thumbnailAlt: mediaPayload.alt
+                thumbnailAlt: mediaPayload.alt,
+                fullscreen: mediaPayload.enlarged,
             }
         }) ?? []
         

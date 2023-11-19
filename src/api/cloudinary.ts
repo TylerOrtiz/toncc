@@ -90,8 +90,8 @@ export const get_media_by_ids = async(ids: string[]) => {
 
 const wrap_media = (id: string) => {
     return {
-        thumbnail: cloudinary.url(id, { quality: 'auto:low', secure: true }),
-        display: cloudinary.url(id, { quality: 'auto:good', secure: true }),
-        enlarged: cloudinary.url(id, { quality: 'auto:best', secure: true }),
+        thumbnail: cloudinary.url(id, { quality: 'auto:low', background: "black", crop: 'fill', width: 250, height: 175, secure: true }),
+        display: cloudinary.url(id, { quality: 'auto:good', background: "black", crop: 'fill', aspect_ratio: "16:9", height: 768, secure: true }),
+        enlarged: cloudinary.url(id, { quality: 'auto:best', background: "black", crop: 'fill', aspect_ratio: "16:9", height: 1024, secure: true }),
     }
 }
