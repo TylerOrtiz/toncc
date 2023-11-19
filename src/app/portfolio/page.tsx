@@ -56,8 +56,8 @@ export default async function Portfolio() {
         <div className="page-content">
             <div className="row">
                 <div className="col">
-                    <h1 className="font-weight-light">Projects</h1>
-                    <h2 className="font-weight-light">Review some of our highlighted work.</h2>
+                    <h1 className="fw-light">Projects</h1>
+                    <h2 className="fw-light">Review some of our highlighted work.</h2>
                 </div>
             </div>
             {hydratedPortfolios.map((item) => (

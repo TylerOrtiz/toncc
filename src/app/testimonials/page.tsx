@@ -8,14 +8,14 @@ export const metadata: Metadata = {
 
 export default async function Testimonials() {
     const testimonials = TestimonialsContent
-    const tesimonialClassBase = 'blockquote testimonial-quote'
+    const tesimonialClassBase = 'col blockquote testimonial-quote'
     const testimonialClassLeft = `${tesimonialClassBase} testimonial-quote-left`
     const testimonialClassRight = `${tesimonialClassBase} testimonial-quote-right`
 
     return (
         <div className="page-content">
-            <h1 className="font-weight-light">Testimonials</h1>
-            <h2 className="font-weight-light">Hear some feedback from some of our clients!</h2>
+            <h1 className="fw-light">Testimonials</h1>
+            <h2 className="fw-light">Hear some feedback from some of our clients!</h2>
 
             {testimonials.map((item, idx) => {
                 const ourclass = idx % 2 === 0 ? testimonialClassLeft : testimonialClassRight

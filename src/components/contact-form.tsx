@@ -61,11 +61,11 @@ export default function ContactForm({
         return (<>
             <p>Thank you for contacting us. </p>
             <p>We'll get back to you as soon as possible.</p>
-            
+
             {blockNext && (
-              <div className="d-flex justify-content-end">
-                  <button type="button" onClick={() => resetForm()} className="btn btn-primary mx-3">Send another message?</button>
-              </div>
+                <div className="d-flex justify-content-end">
+                    <button type="button" onClick={() => resetForm()} className="btn btn-primary mx-3">Send another message?</button>
+                </div>
             )}
         </>)
     }
@@ -74,34 +74,36 @@ export default function ContactForm({
         <>
             <form action={(e) => formAction(e)}>
                 <div className="form-group">
-                    <label>Name
-                        <input type="text" className="form-control" name="name" placeholder="Name" required minLength={3} />
-                    </label>
-
+                    <div className="form-floating mb-3">
+                        <input id="name" type="text" className="form-control" name="name" placeholder="Name" required minLength={3} />
+                        <label className="form-label" htmlFor="name">Name</label>
+                    </div>
                     {/* <div [hidden]="!(contactForm.controls['name'].invalid && contactForm.controls['name'].touched)" className="alert alert-danger">Name is required</div> */}
                 </div>
 
                 <div className="form-group">
-                    <label>Phone Number
-                        <input type="tel" className="form-control" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" required />
-                    </label>
-
+                    <div className="form-floating mb-3">
+                        <input id="phone" type="tel" className="form-control" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="" required aria-describedby="phone-help" />
+                        <label className="form-label" htmlFor="phone">Phone Number</label>
+                        <div id="phone-help" className="form-text">Format: 123-456-7890</div>
+                    </div>
                     {/* <div [hidden]="!(contactForm.controls['phone'].invalid && contactForm.controls['phone'].touched)" className="alert alert-danger">Phone number is required, format: 123-456-7890</div> */}
                 </div>
 
                 <div className="form-group">
-                    <label>Email Address
-                        <input type="email" className="form-control" name="email" placeholder="someone@somewhere.com" required minLength={3} />
-                    </label>
-
+                    <div className="form-floating mb-3">
+                        <input id="email" type="email" className="form-control" name="email" placeholder="" required minLength={3} />
+                        <label className="form-label" htmlFor="email">Email Address</label>
+                    </div>
                     {/* <div [hidden]="!(contactForm.controls['emailAddress'].invalid && contactForm.controls['emailAddress'].touched)" className="alert alert-danger">Email is required</div> */}
                 </div>
 
                 <div className="form-group">
-                    <label>Message
-                        <textarea className="form-control" name="message" placeholder="Let us know what you need." required minLength={10}></textarea>
-                    </label>
-
+                    <div className="form-floating mb-3">
+                        <textarea id="message" className="form-control" name="message" placeholder="" required minLength={10} aria-describedby="message-help"></textarea>
+                        <label className="form-label" htmlFor="message">Message</label>
+                        <div id="message-help" className="form-text">Let us know what you need.</div>
+                    </div>
                     {/* <div [hidden]="!(contactForm.controls['message'].invalid && contactForm.controls['message'].touched)" className="alert alert-danger">Message is required</div> */}
                 </div>
                 <div aria-hidden={true} className="invisible">

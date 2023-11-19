@@ -11,26 +11,26 @@ export const metadata: Metadata = {
 export default function About() {
     return (
         <div className="page-content">
-            <h1 className="font-weight-light">Learn more about our services and history</h1>
+            <h1 className="fw-light">Learn more about our services and history</h1>
 
             <div className="row">
                 <div className="col-12 mb-2">
-                    <h2 className="font-weight-light">Services offered</h2>
+                    <h2 className="fw-light">Services offered</h2>
                 </div>
                 <div className="col-12">
                     <dl>
                         <dt>
-                            <FontAwesomeIcon className="mr-3" icon={faHammer} />
+                            <FontAwesomeIcon className="me-3" icon={faHammer} />
                             Remodeling
                         </dt>
                         <dd>We specialize in remodeling both kitchens and bathrooms.</dd>
                         <dt>
-                            <FontAwesomeIcon className="mr-3" icon={faPencilRuler} />Custom Millwork
+                            <FontAwesomeIcon className="me-3" icon={faPencilRuler} />Custom Millwork
                         </dt>
                         <dd>Have a unique space that off the shelf offerings won't fit?</dd>
                         <dd>We can create custom cabinets, bookcases, railings, libraries, desks for an exact fit for your space.</dd>
                         <dt>
-                            <FontAwesomeIcon className="mr-3" icon={faPaperPlane} />Construction Management
+                            <FontAwesomeIcon className="me-3" icon={faPaperPlane} />Construction Management
                         </dt>
                         <dd>With over 30 years of building services experience, we can help with consulting, project management, and
                             design services.</dd>
@@ -40,7 +40,7 @@ export default function About() {
 
             <div className="row">
                 <div className="col-12 mb-2">
-                    <h2 className="font-weight-light">A bit of history</h2>
+                    <h2 className="fw-light">A bit of history</h2>
                 </div>
                 <div className="col-12 col-md-6 mx-auto">
                     <p>Starting in the late 1970s, working for a design and build firm in the Hudson Valley, owner John Ortiz got

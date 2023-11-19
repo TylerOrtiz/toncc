@@ -20,8 +20,8 @@ export default async function Contact() {
 
     return (
         <div className="page-content">
-            <h1 className="font-weight-light">Get in touch with us</h1>
-            <h2 className="font-weight-light">Contact us for a consultation or estimate.</h2>
+            <h1 className="fw-light">Get in touch with us</h1>
+            <h2 className="fw-light">Contact us for a consultation or estimate.</h2>
 
             <div className="row">
                 <div className="col-12 col-md-6">
@@ -34,7 +34,7 @@ export default async function Contact() {
 
                                     <div className="row" itemScope itemType="http://schema.org/PostalAddress">
                                         <div className="col d-flex justify-content-end">
-                                            <FontAwesomeIcon className="xd-block xtext-right text-brand-dark" icon={faAddressCard} />
+                                            <FontAwesomeIcon className="text-brand-dark" icon={faAddressCard} />
                                         </div>
                                         <div className="col-10">
                                             <span itemProp="streetAddress">5410 Mallard Dr S</span><br />
@@ -46,7 +46,7 @@ export default async function Contact() {
                                     </div>
                                     <div className="row">
                                         <div className="col d-flex justify-content-end">
-                                            <FontAwesomeIcon className="xd-block xtext-right text-brand-dark" icon={faPhoneSquare} />
+                                            <FontAwesomeIcon className="text-brand-dark" icon={faPhoneSquare} />
                                         </div>
                                         <div className="col-10">
                                             <a href="tel:704-918-9304">
@@ -56,7 +56,7 @@ export default async function Contact() {
                                     </div>
                                     <div className="row">
                                         <div className="col d-flex justify-content-end">
-                                            <FontAwesomeIcon className="xd-block xtext-right text-brand-dark" icon={faEnvelopeSquare} />
+                                            <FontAwesomeIcon className="text-brand-dark" icon={faEnvelopeSquare} />
                                         </div>
                                         <div className="col-10">
                                             <a href="mailto:john@toncustomcarpentry.com">
