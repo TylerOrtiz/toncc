@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHammer, faPencilRuler, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
@@ -59,7 +60,13 @@ export default function About() {
                         craftsmanship to your home.</p>
                 </div>
                 <div className="col-12 col-md-6 mx-auto">
-                    <img className="img-fluid" src="/history-map.png" alt="Location history map of TON Custom Carpentry" />
+                    <Image
+                        className="img-fluid"
+                        src="/history-map.png"
+                        alt="Location history map of TON Custom Carpentry"
+                        width={796}
+                        height={414}
+                    />
                 </div>
             </div>
         </div>

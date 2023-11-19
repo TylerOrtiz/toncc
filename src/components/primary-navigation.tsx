@@ -1,6 +1,7 @@
 'use client'
 import { useState } from "react";
 import Link from 'next/link'
+import Image from 'next/image'
 import ActiveLink from "./active-link";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome, faBriefcase, faEnvelope, faUsers, faInfoCircle, faTimesCircle, faBars } from "@fortawesome/free-solid-svg-icons";
@@ -11,27 +12,39 @@ export default function PrimaryNavigation() {
         setNavbarOpen(!navbarOpen)
     }
 
-    const togglerClass=`navbar-toggler text-brand-light ${navbarOpen ? 'show' : ''}`
-    const toggledClass=`collapse navbar-collapse ${navbarOpen ? 'show' : ''}`
+    const togglerClass = `navbar-toggler text-brand-light ${navbarOpen ? 'show' : ''}`
+    const toggledClass = `collapse navbar-collapse ${navbarOpen ? 'show' : ''}`
 
     return (
         <>
             <div className="col-6 col-xl-5 mx-auto my-2">
                 <Link className="d-none d-lg-block" href="/">
-                    <img className="img-fluid d-block mx-auto" src="/main_logo.png" alt="TON Logo" title="TON Logo" />
+                    <Image
+                        className="img-fluid d-block mx-auto"
+                        src="/main_logo.png"
+                        alt="TON Logo"
+                        width={579}
+                        height={299}
+                    />
                 </Link>
             </div>
             <nav className="navbar navbar-expand-lg my-3" role="navigation">
                 <div className="col-6 col-sm-5 col-md-4 my-2 d-lg-none">
                     <Link className="navbar-brand" href="/">
-                        <img className="img-fluid" src="/mobile_logo.png" alt="TON Logo" title="TON Logo" />
+                        <Image
+                            className="img-fluid"
+                            src="/mobile_logo.png"
+                            alt="TON Logo"
+                            width={399}
+                            height={99}
+                        />
                     </Link>
                 </div>
                 <button className={togglerClass} type="button" aria-controls="navbarNav" aria-expanded={navbarOpen ? true : false}
                     aria-label="Toggle navigation" onClick={() => toggleNavbar()}>
-                    { navbarOpen ? 
-                        ( <FontAwesomeIcon className="mx-1" icon={faTimesCircle} /> ) : 
-                        ( <FontAwesomeIcon className="mx-1" icon={faBars} />)
+                    {navbarOpen ?
+                        (<FontAwesomeIcon className="mx-1" icon={faTimesCircle} />) :
+                        (<FontAwesomeIcon className="mx-1" icon={faBars} />)
                     }
                 </button>
                 <div className={toggledClass} id="navbarNav">
