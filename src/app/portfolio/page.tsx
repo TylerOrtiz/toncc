@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import PortfolioContent from '@/data/portfolios';
 import { Portfolio } from '@/models/portfolio';
 export const metadata: Metadata = {
-    title: 'TON Custom Carpentry | Portfolio',
+    title: 'TON Custom Cabinets | Portfolio',
     description: `See some of the highlighted work John has done 
     and learn more about what types of work he specializes in.`,
 }

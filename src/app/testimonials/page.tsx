@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import TestimonialsContent from '@/data/testimonials';
 export const metadata: Metadata = {
-    title: 'TON Custom Carpentry | Testimonials',
+    title: 'TON Custom Cabinets | Testimonials',
     description: `Still not convinced? Hear directly from prior and
     current clients with their testimonials.`,
 }

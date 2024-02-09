@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAddressCard, faPhoneSquare, faEnvelopeSquare } from "@fortawesome/free-solid-svg-icons";
 import ContactForm from '@/components/contact-form';
 export const metadata: Metadata = {
-    title: 'TON Custom Carpentry | Contact',
+    title: 'TON Custom Cabinets | Contact',
     description: `Do you have a space that off the shelf products wont fit?
     No problem! Contact John today for a free consultation.`,
 }
@@ -30,7 +30,7 @@ export default async function Contact() {
                         <div className="card-body">
                             <div className="card-text">
                                 <address itemScope itemType="http://schema.org/ContactPoint">
-                                    <strong className="text-center d-block">T.O.N. Custom Carpentry LLC.</strong>
+                                    <strong className="text-center d-block">T.O.N. Custom Cabinets</strong>
 
                                     <div className="row" itemScope itemType="http://schema.org/PostalAddress">
                                         <div className="col d-flex justify-content-end">
@@ -49,8 +49,8 @@ export default async function Contact() {
                                             <FontAwesomeIcon className="text-brand-dark" icon={faPhoneSquare} />
                                         </div>
                                         <div className="col-10">
-                                            <a href="tel:704-918-9304">
-                                                <span itemProp="telephone">(704) 918-9304</span>
+                                            <a href="tel:+17044542371">
+                                                <span itemProp="telephone">(704) 454-2371</span>
                                             </a><br />
                                         </div>
                                     </div>

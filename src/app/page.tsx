@@ -29,7 +29,7 @@ export default async function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="page-content">
-        <h1 className="fw-light">Welcome to TON Custom Carpentry!</h1>
+        <h1 className="fw-light">Welcome to TON Custom Cabinets!</h1>
         <h2 className="fw-light">Check out some of our work!</h2>
 
         <div className="row">

@@ -8,8 +8,8 @@ import '@/styles/ton-fontawesome.scss'
 import '@/styles/styles.scss'
 
 export const metadata: Metadata = {
-  title: 'TON Custom Carpentry',
-  description: 'Welcome to TON Custom Carpentry. We serve the greater Charlotte, North Carolina area with high quality custom cabinetry.',
+  title: 'TON Custom Cabinets',
+  description: 'Welcome to TON Custom Cabinets. We serve the greater Charlotte, North Carolina area with high quality custom cabinetry.',
 }
 
 export default function RootLayout({

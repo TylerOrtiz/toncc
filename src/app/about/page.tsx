@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHammer, faPencilRuler, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
 export const metadata: Metadata = {
-    title: 'TON Custom Carpentry | About',
-    description: `Having moved across the country and back, TON Custom Carpentry
+    title: 'TON Custom Cabinets | About',
+    description: `Having moved across the country and back, TON Custom Cabinets
     has experience in both east and west coast designs with over 30 years of building services experience.`,
 }
 
@@ -55,15 +55,15 @@ export default function About() {
                         from
                         all across the country, he returned to the East Coast.</p>
 
-                    <p>Upon his return, John established TON Custom Carpentry and has continued working on projects ranging from
-                        custom homes to additions, kitchens, baths and more. TON Custom Carpentry looks forward to bringing quality
+                    <p>Upon his return, John established TON Custom Cabinets and has continued working on projects ranging from
+                        custom homes to additions, kitchens, baths and more. TON Custom Cabinets looks forward to bringing quality
                         craftsmanship to your home.</p>
                 </div>
                 <div className="col-12 col-md-6 mx-auto">
                     <Image
                         className="img-fluid"
                         src="/history-map.png"
-                        alt="Location history map of TON Custom Carpentry"
+                        alt="Location history map of TON Custom Cabinets"
                         width={796}
                         height={414}
                     />

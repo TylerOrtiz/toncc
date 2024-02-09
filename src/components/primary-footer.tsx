@@ -8,7 +8,7 @@ export default function PrimaryFooter() {
             <div className="row">
                 <div className="col">
                     <footer className="footer text-center my-3 py-2">
-                        <span><a href="tel:+1704918304">704.918.9304</a> &diams; TON Custom Carpentry &diams; <a href="mailto:john@toncustomcarpentry.com">john@toncustomcarpentry.com</a></span>
+                        <span><a href="tel:+17044542371">704.454.2371</a> &diams; TON Custom Cabinets &diams; <a href="mailto:john@toncustomcarpentry.com">john@toncustomcarpentry.com</a></span>
                     </footer>
                 </div>
             </div>
