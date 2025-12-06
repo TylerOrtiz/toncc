@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import PortfolioContent from '@/data/portfolios';
-import { Portfolio } from '@/models/portfolio';
+import type { Portfolio } from '@/models/portfolio';
 export const metadata: Metadata = {
     title: 'TON Custom Cabinets | Portfolio',
     description: `See some of the highlighted work John has done 
